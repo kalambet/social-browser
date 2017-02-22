@@ -1,0 +1,20 @@
+runtime: go
+api_version: go1
+
+env_variables:
+  FORD_AUTH_TOKEN: ""
+
+handlers:
+- url: /health/.*
+  script: _go_app
+
+- url: /users/.*
+  script: _go_app
+
+- url: /tasks/worker
+  script: _go_app
+  login: admin
+
+- url: /tasks/daily
+  script: _go_app
+  login: admin
