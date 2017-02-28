@@ -47,7 +47,7 @@ func dailyTaskHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func workerTaskHandler(w http.ResponseWriter, r *http.Request) {
+func workerTaskHandler(_ http.ResponseWriter, r *http.Request) {
 	ctx := appengine.NewContext(r)
 	CreateWorker(&ctx)
 }

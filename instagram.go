@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"errors"
 )
 
 type InstagramMediaImage struct {
@@ -47,6 +48,9 @@ type InstagramData struct {
 }
 
 func GetDataFromInstagram(ctx *appengine.Context, username string) (*InstagramData, error) {
+	if username == "" {
+		return nil, errors.New("Username can't be empty")
+	}
 
 	url := fmt.Sprintf("https://instagram.com/%s/media/", username)
 

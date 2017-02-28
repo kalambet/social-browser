@@ -23,7 +23,7 @@ type Payload struct {
 
 // AddTaskInQueue creates PULL task in Google Task Queues
 // tagging it by type of operation it meant to perform
-func AddTaskInQueue(ctx *appengine.Context, ttype string, payload Payload) (err error) {
+func AddTaskInQueue(ctx *appengine.Context, ttype string, payload Payload) error {
 	log.Printf("Add New Task: {Type: %s, Payload: %#v}\n", ttype, payload)
 
 	encoded, err := json.Marshal(payload)
@@ -45,9 +45,9 @@ func AddTaskInQueue(ctx *appengine.Context, ttype string, payload Payload) (err 
 	return nil
 }
 
-func createTaskWorker(ctx *appengine.Context) (err error) {
+func createTaskWorker(ctx *appengine.Context) error {
 	t := taskqueue.NewPOSTTask("/tasks/worker", url.Values{})
-	_, err = taskqueue.Add(*ctx, t, PushQueueName)
+	_, err := taskqueue.Add(*ctx, t, PushQueueName)
 	if err != nil {
 		return err
 	}

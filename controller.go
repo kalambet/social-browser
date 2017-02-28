@@ -64,7 +64,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func CreateRequestQueue(w http.ResponseWriter, r *http.Request) error {
+func CreateRequestQueue(_ http.ResponseWriter, r *http.Request) error {
 	ctx := appengine.NewContext(r)
 	query := datastore.NewQuery(UserKind)
 	iterator := query.Run(ctx)

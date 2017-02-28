@@ -42,10 +42,11 @@ func SaveNewUser(ctx *appengine.Context, username string, data *InstagramData) e
 		return fmt.Errorf("User [%s] already exist\n", username)
 	}
 
+	now := time.Now().Unix()
 	err = saveUserToStore(ctx, User{
 		InstagramUsername: username,
-		Added:             time.Now().Unix(),
-		LastUpdated:       time.Now().Unix(),
+		Added:             now,
+		LastUpdated:       now,
 	})
 
 	if err != nil {
